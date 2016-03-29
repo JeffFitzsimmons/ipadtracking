@@ -1,7 +1,5 @@
 <?php
-date_default_timezone_set('America/Denver');
-
-include('checkLogin.php'); // Includes Login Script
+include('checklogin.php'); // Includes Login Script
 
 if(isset($_SESSION['login_user'])){
     header("location: main.php");
@@ -21,13 +19,9 @@ if(isset($_SESSION['login_user'])){
 
     <title>Login</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap/Font Awesome/Custom CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- Font Awesome core CSS -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
-
-    <!-- Custom styles -->
     <link href="css/custom.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -1,5 +1,4 @@
 <?php
-// Begin session
 session_start();
 
 // Connect to MySQL

@@ -6,6 +6,12 @@ if(empty($_SESSION['login_user'])){
 }
 
 include ('header.php');
+include ('dbloginlocal.php');
+
+// Only process the form if $_POST isn't empty
+if (!empty($_POST)) {
+
+}
 
 ?>
 
@@ -23,6 +29,8 @@ include ('header.php');
 
     <!-- Bootstrap/Font Awesome/Custom CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href="css/custom.css" rel="stylesheet">
 
@@ -35,10 +43,70 @@ include ('header.php');
 
 <body>
 
+    <div class="container add-padding">
+        <form method="post" action="">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="pid" class="col-sm-3 control-label">PID</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" id="pid" name="pid" required autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="device" class="col-sm-3 control-label">Device ID</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="device" name="device" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="checkInDate" class="col-sm-3 control-label">Check In Date</label>
+                            <div class="col-sm-9">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" id="checkInDate" name="checkInDate" required title="Please select a check out date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Comments</label>
+                            <div class="col-sm-9">
+                                <textarea id="comments" name="comments" class="form-control" rows="4" placeholder="Add a comment here..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="row text-center">
+                <input name="submit" type="submit" class="btn btn-lg btn-primary" value="Check In">
+            </div>
+        </form>
+    </div>
+
     <!-- Javascript -->
     <script src="js/jquery-1.12.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <?php include ("modals.php"); ?>
+
+    <?php if($deviceModal):?>
+        <script> $('#deviceModal').modal('show');</script>
+    <?php endif;?>
 
 </body>
 

@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('America/Denver');
+
 $mysqli = mysqli_connect("localhost", "root", "NormaJean1", "ipadtracking");
 
 if (!$mysqli) {
