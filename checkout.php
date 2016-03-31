@@ -9,9 +9,9 @@ include ('header.php');
 include ('dbloginlocal.php');
 
 // Show modal if device is already checked out
-$deviceModal = false;
+$deviceOut = false;
 if (isset($_GET['deviceOut'])) {
-    $deviceModal = true;
+    $deviceOut = true;
 }
 
 // Fill Device Names from database
@@ -24,6 +24,7 @@ if (!empty($_POST)) {
     if(isset($_POST['assets']))
     $assets = implode(',',$_POST['assets']);
 
+    // Assign all other necessary variables
     $pid = mysqli_real_escape_string($mysqli, $_POST['pid']);
     $lastName = mysqli_real_escape_string($mysqli, $_POST['lastName']);
     $device = mysqli_real_escape_string($mysqli, $_POST['device']);
@@ -39,6 +40,9 @@ if (!empty($_POST)) {
             VALUES ('$pid', '$lastName', '$device', '$checkOutDate', '$dueDate', '$assets')");
 
             $update2 = mysqli_query($mysqli, "UPDATE devices SET Checked_Out = 'Yes' WHERE Device_ID = '$device'");
+
+            $update3 = mysqli_query($mysqli, "INSERT INTO history (PID, Last_Name, Device_ID, Check_Out_Date, Due_Date, Assets)
+            VALUES ('$pid', '$lastName', '$device', '$checkOutDate', '$dueDate', '$assets')");
         }
         else {
             header("Location: checkout.php?deviceOut=true");
@@ -169,8 +173,8 @@ if (!empty($_POST)) {
 
     <?php include ("modals.php"); ?>
 
-    <?php if($deviceModal):?>
-        <script> $('#deviceModal').modal('show');</script>
+    <?php if($deviceOut):?>
+        <script> $('#deviceOutModal').modal('show');</script>
     <?php endif;?>
 
 </body>

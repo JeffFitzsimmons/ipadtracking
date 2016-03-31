@@ -8,9 +8,42 @@ if(empty($_SESSION['login_user'])){
 include ('header.php');
 include ('dbloginlocal.php');
 
+// Show modal if device is already checked out
+$deviceIn = false;
+if (isset($_GET['deviceIn'])) {
+    $deviceIn = true;
+}
+
+// Fill Device Names from database
+$fillOptions = mysqli_query($mysqli, "SELECT Device_Name, Device_ID FROM devices");
+
 // Only process the form if $_POST isn't empty
 if (!empty($_POST)) {
 
+    $pid = mysqli_real_escape_string($mysqli, $_POST['pid']);
+    $device = mysqli_real_escape_string($mysqli, $_POST['device']);
+    $checkInDate = mysqli_real_escape_string($mysqli, $_POST['checkInDate']);
+    $comments = mysqli_real_escape_string($mysqli, $_POST['comments']);
+
+    // Check if device is checked out
+    $query = mysqli_query($mysqli, "SELECT Checked_Out FROM devices WHERE Device_ID = '$device' AND Checked_Out = 'No'");
+
+    if ($query) {
+        if (mysqli_num_rows($query) == 0) {
+            $update = mysqli_query($mysqli, "UPDATE history SET Check_In_Date = '$checkInDate', Comments = '$comments' WHERE PID = '$pid' AND Device_ID = '$device'");
+
+            $update2 = mysqli_query($mysqli, "UPDATE devices SET Checked_Out = 'No' WHERE Device_ID = '$device'");
+
+            $delete = mysqli_query($mysqli, "DELETE FROM checkout WHERE PID = '$pid' AND Device_ID = '$device'");
+        }
+        else {
+            header("Location: checkin.php?deviceIn=true");
+            exit();
+        }
+    }
+
+    mysqli_close($mysqli);
+    header("location: ./main.php");
 }
 
 ?>
@@ -63,7 +96,13 @@ if (!empty($_POST)) {
                         <div class="form-group">
                             <label for="device" class="col-sm-3 control-label">Device ID</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="device" name="device" required>
+                                <select id="device" name="device" class="selectpicker" data-live-search="true" data-width="100%" required>
+                                    <?php
+                                    while ($row = mysqli_fetch_array($fillOptions)){
+                                        echo "<option value=" . $row['Device_ID'] . ">" . $row['Device_Name'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -104,8 +143,8 @@ if (!empty($_POST)) {
 
     <?php include ("modals.php"); ?>
 
-    <?php if($deviceModal):?>
-        <script> $('#deviceModal').modal('show');</script>
+    <?php if($deviceIn):?>
+        <script> $('#deviceInModal').modal('show');</script>
     <?php endif;?>
 
 </body>

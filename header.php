@@ -18,7 +18,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="main.php">Home</a></li>
                         <li><a href="devices.php">Manage Devices</a></li>
-                        <li><a href="students.php">Manage Students</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
