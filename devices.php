@@ -6,7 +6,6 @@ if(empty($_SESSION['login_user'])){
 }
 
 include ('header.php');
-include ('dbloginlocal.php');
 
 // Fill infromation requested from database
 $fillCheckedOut = mysqli_query($mysqli, "SELECT * FROM devices INNER JOIN checkout ON devices.Device_ID = checkout.Device_ID WHERE devices.Checked_Out = 'Yes'");

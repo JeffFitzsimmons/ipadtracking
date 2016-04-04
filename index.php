@@ -5,6 +5,7 @@ if(isset($_SESSION['login_user'])){
     header("location: main.php");
 }
 
+$showDivFlag = false;
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +63,8 @@ if(isset($_SESSION['login_user'])){
     <!-- Javascript -->
     <script src="js/jquery-1.12.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <?php include ("footer.php"); ?>
 
 </body>
 

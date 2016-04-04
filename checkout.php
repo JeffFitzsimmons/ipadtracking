@@ -6,7 +6,6 @@ if(empty($_SESSION['login_user'])){
 }
 
 include ('header.php');
-include ('dbloginlocal.php');
 
 // Show modal if device is already checked out
 $deviceOut = false;
@@ -20,7 +19,7 @@ $fillOptions = mysqli_query($mysqli, "SELECT Device_Name, Device_ID FROM devices
 // Only process the form if $_POST isn't empty
 if (!empty($_POST)) {
 
-    // Get values from multiselect dropdowns and radio buttons
+    // Get values from multiselect dropdowns
     if(isset($_POST['assets']))
     $assets = implode(',',$_POST['assets']);
 

@@ -6,7 +6,6 @@ if(empty($_SESSION['login_user'])){
 }
 
 include ('header.php');
-include ('dbloginlocal.php');
 
 // Show modal if device is already checked out
 $deviceIn = false;
@@ -30,7 +29,7 @@ if (!empty($_POST)) {
 
     if ($query) {
         if (mysqli_num_rows($query) == 0) {
-            $update = mysqli_query($mysqli, "UPDATE history SET Check_In_Date = '$checkInDate', Comments = '$comments' WHERE PID = '$pid' AND Device_ID = '$device'");
+            $update = mysqli_query($mysqli, "UPDATE history SET Check_In_Date = '$checkInDate', Comments = '$comments' WHERE PID = '$pid' AND Device_ID = '$device' AND Check_In_Date IS NULL");
 
             $update2 = mysqli_query($mysqli, "UPDATE devices SET Checked_Out = 'No' WHERE Device_ID = '$device'");
 

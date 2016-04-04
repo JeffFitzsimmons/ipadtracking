@@ -1,9 +1,7 @@
 <?php
 session_start();
 
-// Connect to MySQL
 include ("dbLoginlocal.php");
-// include ("dbLogin.php");
 
 if(isset($_SESSION['login_user'])){
     header("location: main.php");
