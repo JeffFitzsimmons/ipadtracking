@@ -5,7 +5,6 @@ if(isset($_SESSION['login_user'])){
     header("location: main.php");
 }
 
-$showDivFlag = false;
 ?>
 
 <!DOCTYPE html>
