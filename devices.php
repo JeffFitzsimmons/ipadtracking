@@ -1,11 +1,11 @@
 <?php
 session_start();
 
+include ('dbloginlocal.php');
+
 if(empty($_SESSION['login_user'])){
     header("location: index.php");
 }
-
-include ('header.php');
 
 // Fill infromation requested from database
 $fillCheckedOut = mysqli_query($mysqli, "SELECT * FROM devices INNER JOIN checkout ON devices.Device_ID = checkout.Device_ID WHERE devices.Checked_Out = 'Yes'");
@@ -43,6 +43,7 @@ mysqli_close($mysqli);
 </head>
 
 <body>
+    <?php include ('header.php'); ?>
 
     <div class="container add-padding">
         <h3 class="text-center">Devices currently checked out</h3><br>

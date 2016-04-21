@@ -1,11 +1,11 @@
 <?php
 session_start();
 
+include ('dbLoginLocal.php');
+
 if(empty($_SESSION['login_user'])){
     header("location: index.php");
 }
-
-include ('header.php');
 
 ?>
 
@@ -34,6 +34,7 @@ include ('header.php');
 </head>
 
 <body>
+    <?php include ('header.php'); ?>
 
     <div class="container home-container">
         <div class="btn-group btn-group-lg btn-block">

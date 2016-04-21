@@ -1,11 +1,11 @@
 <?php
 session_start();
 
+include ('dbLoginLocal.php');
+
 if(empty($_SESSION['login_user'])){
     header("location: index.php");
 }
-
-include ('header.php');
 
 // Show modal if device is already checked out
 $deviceIn = false;
@@ -74,6 +74,7 @@ if (!empty($_POST)) {
 </head>
 
 <body>
+    <?php include ('header.php'); ?>
 
     <div class="container add-padding">
         <form method="post" action="">
