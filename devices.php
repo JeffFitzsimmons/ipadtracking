@@ -74,7 +74,7 @@ mysqli_close($mysqli);
         <br><br>
 
         <!-- History view from range selection -->
-        <h3 class="text-center">History and Search</h3><br>
+        <h3 class="text-center">History</h3><br>
         <table id="history" class="table table-striped" cellspacing="0" width="100%">
             <thead>
                 <tr>

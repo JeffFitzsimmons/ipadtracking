@@ -19,7 +19,7 @@ $fillOptions = mysqli_query($mysqli, "SELECT Device_Name, Device_ID FROM devices
 // Only process the form if $_POST isn't empty
 if (!empty($_POST)) {
 
-    $pid = mysqli_real_escape_string($mysqli, $_POST['pid']);
+    $pid = mysqli_real_escape_string($mysqli, $_POST['pidcheckin']);
     $device = mysqli_real_escape_string($mysqli, $_POST['device']);
     $checkInDate = mysqli_real_escape_string($mysqli, $_POST['checkInDate']);
     $comments = mysqli_real_escape_string($mysqli, $_POST['comments']);
@@ -77,32 +77,42 @@ if (!empty($_POST)) {
     <?php include ('header.php'); ?>
 
     <div class="container add-padding">
+        <h2 class="text-center">Check In</h2><br>
         <form method="post" action="">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label for="pid" class="col-sm-3 control-label">PID</label>
+                            <label for="pidcheckin" class="col-sm-3 control-label">PID</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control" id="pid" name="pid" required autofocus>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                                    <input type="number" class="form-control" id="pidcheckin" name="pidcheckin" required autofocus>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="lastName" class="col-sm-3 control-label">Last Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="device" class="col-sm-3 control-label">Device ID</label>
                             <div class="col-sm-9">
-                                <select id="device" name="device" class="selectpicker" data-live-search="true" data-width="100%" required>
-                                    <?php
-                                    while ($row = mysqli_fetch_array($fillOptions)){
-                                        echo "<option value=" . $row['Device_ID'] . ">" . $row['Device_Name'] . "</option>";
-                                    }
-                                    ?>
-                                </select>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
+                                    <select id="device" name="device" class="selectpicker" data-live-search="true" data-width="100%" required title="Choose a device...">
+                                        <?php
+                                        while ($row = mysqli_fetch_array($fillOptions)){
+                                            echo "<option value=" . $row['Device_ID'] . ">" . $row['Device_Name'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -121,7 +131,10 @@ if (!empty($_POST)) {
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Comments</label>
                             <div class="col-sm-9">
-                                <textarea id="comments" name="comments" class="form-control" rows="4" placeholder="Add a comment here..."></textarea>
+                                <div class="input-group">
+                                    <textarea id="comments" name="comments" class="form-control" rows="4" placeholder="Add a comment here..."></textarea>
+                                    <span class="input-group-addon"><i class="fa fa-commenting-o" aria-hidden="true"></i></span>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -19,13 +19,29 @@ $("input#lastName").on("keydown", function(event){
 });
 
 
-// Auto populates the Last Name based PID's in database
+// Auto populates the Last Name based PID's in database for Check Out
 $('input#pid').keyup(function(event) {
     if (this.value.length == 6) {
         var pid = $('input#pid').val();
         if ($.trim(pid) != '') {
             $.post('autocomplete.php', {pid: pid}, function(data) {
                 $('input#lastName').val(data)
+            });
+        }
+    }
+});
+
+
+// Auto populates the Last Name based PID's in database and the Device Name for Check In
+$('input#pidcheckin').keyup(function(event) {
+    if (this.value.length == 6) {
+        var pid = $('input#pidcheckin').val();
+        if ($.trim(pid) != '') {
+            $.post('autocomplete.php', {pid: pid}, function(data) {
+                $('input#lastName').val(data)
+            });
+            $.post('autocompleteDevice.php', {pid: pid}, function(device) {
+                $('#device').val(device).change()
             });
         }
     }

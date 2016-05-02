@@ -94,6 +94,7 @@ if (!empty($_POST)) {
     <?php include ('header.php'); ?>
 
     <div class="container add-padding">
+        <h2 class="text-center">Check Out</h2><br>
         <form method="post" action="">
             <div class="row">
                 <div class="col-md-6">
@@ -101,25 +102,34 @@ if (!empty($_POST)) {
                         <div class="form-group">
                             <label for="pid" class="col-sm-3 control-label">PID</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control" id="pid" name="pid" required autofocus>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                                    <input type="number" class="form-control" id="pid" name="pid" required autofocus>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="lastName" class="col-sm-3 control-label">Last Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="device" class="col-sm-3 control-label">Device ID</label>
                             <div class="col-sm-9">
-                                <select id="device" name="device" class="selectpicker" data-live-search="true" data-width="100%" required>
-                                    <?php
-                                    while ($row = mysqli_fetch_array($fillOptions)){
-                                        echo "<option value=" . $row['Device_ID'] . ">" . $row['Device_Name'] . "</option>";
-                                    }
-                                    ?>
-                                </select>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
+                                    <select id="device" name="device" class="selectpicker" data-live-search="true" data-width="100%" required title="Choose a device...">
+                                        <?php
+                                        while ($row = mysqli_fetch_array($fillOptions)){
+                                            echo "<option value=" . $row['Device_ID'] . ">" . $row['Device_Name'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -146,12 +156,15 @@ if (!empty($_POST)) {
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Device Assets </label>
                             <div class="col-sm-9">
-                                <select id="assets" name="assets[]" class="selectpicker show-tick" multiple data-width="auto" required>
-                                    <option value="Case">Case</option>
-                                    <option value="Keyboard">Keyboard</option>
-                                    <option value="Charger">Charger</option>
-                                    <option value="N/A">N/A</option>
-                                </select>
+                                <div class="input-group">
+                                    <select id="assets" name="assets[]" class="selectpicker show-tick" multiple data-width="100%" required>
+                                        <option value="Case">Case</option>
+                                        <option value="Keyboard">Keyboard</option>
+                                        <option value="Charger">Charger</option>
+                                        <option value="N/A">N/A</option>
+                                    </select>
+                                    <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                                </div>
                             </div>
                         </div>
                     </div>
