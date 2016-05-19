@@ -93,7 +93,7 @@ if (!empty($_POST)) {
 <body>
     <?php include ('header.php'); ?>
 
-    <div class="container add-padding">
+    <div class="container">
         <h2 class="text-center">Check Out</h2><br>
         <form method="post" action="">
             <div class="row">

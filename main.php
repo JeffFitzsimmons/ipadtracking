@@ -38,13 +38,13 @@ if(empty($_SESSION['login_user'])){
 
     <div class="container home-container">
         <div class="btn-group btn-group-lg btn-block">
-            <a href="checkout.php" class="btn btn-default col-sm-6" role="button"><i class="fa fa-arrow-up"></i> Check Out</a>
-            <a href="checkin.php" class="btn btn-default col-sm-6" role="button"><i class="fa fa-arrow-down"></i> Check In</a>
+            <a href="checkout.php" class="btn btn-default col-sm-6 col-xs-6" role="button"><i class="fa fa-arrow-up"></i> Check Out</a>
+            <a href="checkin.php" class="btn btn-default col-sm-6 col-xs-6" role="button"><i class="fa fa-arrow-down"></i> Check In</a>
         </div>
         <br></br>
 
         <h2 class="text-center">iPad Check In/Check Out System</h2><br>
-        <img src="img/main-logo.jpg" class="center-block"></img>
+        <img src="img/main-logo.jpg" class="center-block logoimg"></img>
 
     </div>
 

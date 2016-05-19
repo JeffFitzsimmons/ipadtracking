@@ -45,7 +45,7 @@ mysqli_close($mysqli);
 <body>
     <?php include ('header.php'); ?>
 
-    <div class="container add-padding">
+    <div class="container">
         <h3 class="text-center">Devices currently checked out</h3><br>
         <table id="deviceTable" class="table table-hover" cellspacing="0" width="100%">
             <thead>
